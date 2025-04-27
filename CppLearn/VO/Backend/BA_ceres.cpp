@@ -5,16 +5,16 @@ using namespace ceres;
 
 void SolveBA(BALProblem& balproblem);
 
-string path = "../../data/BAL.txt";
+string path = "../../../data/BAL.txt";
 
 int main(int argc, char const *argv[])
 {
     BALProblem balproblem(path);
     balproblem.normalize();
     balproblem.perturb(0.5, 0.1, 0.5);
-    balproblem.WriteToPLYFile("initial.ply");
+    balproblem.WriteToPLYFile("../../../data/initial_ceres.ply");
     SolveBA(balproblem);
-    balproblem.WriteToPLYFile("final.ply");
+    balproblem.WriteToPLYFile("../../../data/final_ceres.ply");
 
     return 0;
 }

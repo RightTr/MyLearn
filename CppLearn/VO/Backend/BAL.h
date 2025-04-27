@@ -71,6 +71,16 @@ class BALProblem
             return num_obs_;
         }
 
+        const int num_cam() const
+        {
+            return num_cam_;
+        }
+
+        const int num_pts() const
+        {
+            return num_pts_;
+        }
+
         const double* cameras() const
         {
             return param_;

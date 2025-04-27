@@ -20,6 +20,7 @@ class MyCostFunction
             T pre[2];
             CamProjectionWithDistortion(camera, points, pre);
 
+            //重投影误差
             residual[0] = pre[0] - T(obs_x_);
             residual[1] = pre[1] - T(obs_y_);
 
@@ -32,22 +33,25 @@ class MyCostFunction
             T p[3];
             Rot2Point(camera, points, p);
 
+            //旋转后，在相机坐标下的三维点
             p[0] += camera[3];
             p[1] += camera[4];
             p[2] += camera[5];
 
-
+            //归一化
             T x_norm = -p[0] / p[2];
             T y_norm = -p[1] / p[2];
 
             const T& l1 = camera[7];
             const T& l2 = camera[8];
 
+            //去畸变
             T r2 = x_norm * x_norm + y_norm * y_norm;
             T distortion = T(1.0) + r2 * (l1 + l2 * r2);
 
             const T& f = camera[6];
 
+            //投影
             pre[0] = f * distortion * x_norm;
             pre[1] = f * distortion * y_norm;
             
