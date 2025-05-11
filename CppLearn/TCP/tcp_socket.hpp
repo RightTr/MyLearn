@@ -20,8 +20,8 @@ class TcpSocket
         bool Socket()
         {
             /*  AF_INET: IPv4地址族 
-                SOCK_STREAM: 面向连接的流套接字，即TCP套接字 
-                IPPROTO_TCP: 套接字的协议，TCP协议 */
+            *   SOCK_STREAM: 面向连接的流套接字，即TCP套接字 
+            *   IPPROTO_TCP: 套接字的协议，TCP协议 */
             _sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
             if(_sockfd < 0)
             {
@@ -88,7 +88,7 @@ class TcpSocket
         {
             char temp[4096] = {0};
             /* recv(): 返回接收的字节数
-            * 0: 默认接收，不做任何处理 */
+            *  0: 默认接收，不做任何处理 */
             int ret = recv(_sockfd, temp, 4096, 0); // 默认阻塞，没有数据就会等待
             if(ret < 0)
             {
